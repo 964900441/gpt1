@@ -42,5 +42,15 @@
 - 保留告警事件记录，跟踪具体节点的故障时间线。
 - 规划历史数据保留策略，避免 D1 体量膨胀，同时支持 user_id 维度的多租户隔离。
 
+## Workers Demo
+
+项目包含一个 `worker.js` 示例脚本，直接返回与概念设计稿相匹配的监控面板 UI。要在本地测试或部署到 Cloudflare Workers，可按照以下步骤操作：
+
+1. 安装 [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) 并登录 Cloudflare 账号。
+2. 在仓库根目录执行 `wrangler dev worker.js` 以启动本地预览。
+3. 验证 UI 是否符合预期后，通过 `wrangler deploy worker.js` 发布到 Cloudflare Workers。
+
+该 Worker 使用静态示例数据渲染卡片式监控视图，后续可将 `nodes` 数组替换为来自 D1 或 KV 的实时数据。
+
 ## 总结
 依托 Workers、D1 与轻量级 Agent，整个探针系统无需复杂后端即可实现高可用、好用且可扩展的多功能监控平台，兼顾部署便捷、运维友好和未来迭代空间。
